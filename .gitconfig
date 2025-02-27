@@ -1,0 +1,39 @@
+[core]
+    editor = nvim
+[credential]
+    helper = store
+[alias]
+    s = status -s
+    ss = status
+
+    a = add
+    aa = add .
+    rest = restore
+
+    ci = commit
+    cia = commit -a
+    amend = commit --amend -a --no-edit
+    eamend = commit --amend -a
+
+    br = branch
+    brd = branch -d
+    sw = switch
+    ch = checkout
+
+    ft = fetch
+    mg = merge
+    rb = rebase
+    rbc = rebase --continue
+
+    pl = pull --rebase
+    ps = push
+    psf = push --force
+
+    df = diff
+    dfs = diff --staged
+
+    rs = reset
+	cp = cherry-pick
+    st = stash
+
+    l = log --graph --abbrev-commit --decorate --format=format:'%C(bold yellow)%h%C(reset) - %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%n'

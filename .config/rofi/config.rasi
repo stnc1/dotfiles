@@ -1,0 +1,49 @@
+configuration {
+    show-icons: false;
+    font: "DejaVu Sans Mono 14";
+    lines: 10;
+    columns: 1;
+    location: 0;
+    width: 30;
+    padding: 10;
+    border: 2;
+    border-radius: 5;
+}
+
+*{
+    background:     #1f1f28;
+    background-alt: #2b2a38;
+    foreground:     #74738a;
+}
+
+element.normal.normal {
+    background-color: @background-alt;
+    text-color: @foreground;
+}
+
+element.alternate.normal {
+    background-color: @background-alt;
+    text-color: @foreground;
+}
+
+element.selected.normal {
+    background-color: #2D4F67;
+    text-color: #DCD7BA;
+}
+
+window {
+    background-color: @background;
+    border-color: @background-alt;
+    border: 3;
+}
+
+inputbar {
+    background-color: @background;
+    text-color: @foreground;
+    border-color: @background;
+    border: 2;
+}
+
+textbox {
+    text-color: #C8C093;
+}
