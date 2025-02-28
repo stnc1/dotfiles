@@ -1,5 +1,38 @@
 return {
     {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+
+        config = function()
+            require("catppuccin").setup()
+
+            -- setup must be called before loading
+            --vim.cmd.colorscheme "catppuccin"
+        end
+    },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+
+        config = function()
+            --vim.cmd.colorscheme "tokyonight-night"
+        end
+    },
+    {
+        "navarasu/onedark.nvim",
+        config = function()
+            local onedark = require("onedark")
+
+            onedark.setup {
+                style = "warmer"
+            }
+            onedark.load()
+        end
+    },
+    {
         "rebelot/kanagawa.nvim",
 
         config = function()
@@ -29,29 +62,7 @@ return {
                 },
             })
 
-            vim.cmd("colorscheme kanagawa")
+            --vim.cmd("colorscheme kanagawa")
         end
     },
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        priority = 1000,
-
-        config = function()
-            require("catppuccin").setup()
-
-            -- setup must be called before loading
-            --vim.cmd.colorscheme "catppuccin"
-        end
-    },
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-
-        config = function()
-            --vim.cmd.colorscheme "tokyonight-night"
-        end
-    }
 }

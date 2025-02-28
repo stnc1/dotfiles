@@ -1,0 +1,23 @@
+# ignore all
+*
+
+# but include this
+!.gitignore
+
+!zsh/
+!zsh/**
+
+!i3/
+!i3/**
+
+!rofi/
+!rofi/**
+
+!polybar/
+!polybar/**
+
+!nvim/
+!nvim/**
+
+!alacritty/
+!alacritty/**

@@ -1,8 +1,7 @@
 return {
     { -- provides undotree with branches
         "mbbill/undotree",
-        config = function()
-            vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+        config = function() vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
         end
     },
     { -- automatically makes pairs for (,{,[,",',` etc.

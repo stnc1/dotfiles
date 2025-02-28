@@ -1,0 +1,10 @@
+# monitors
+xrandr --output HDMI-0 --mode 1920x1080 --rate 180 --primary
+xrandr --output DP-0 --mode 1920x1080 --rate 165 --left-of HDMI-0 
+
+# keymaps
+setxkbmap -option grp:lwin_toggle -option ctrl:nocaps 
+xcape -e 'Caps_Lock=Escape'
+
+# disable sleep
+xset s off -dpms 

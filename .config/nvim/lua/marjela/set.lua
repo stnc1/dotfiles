@@ -36,5 +36,7 @@ vim.g.mapleader = " "
 
 vim.opt.langmap = "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
 
+vim.opt.nrformats = "bin,hex,alpha"
+
 --vim.opt.list = true
 --vim.opt.listchars = "tab:,trail:·,space:·"
