@@ -1,0 +1,9 @@
+*
+
+!.gitignore
+!.zshenv
+!.zshrc
+!aliases.zsh
+!completion.zsh
+!cursor.zsh
+!prompt.zsh
