@@ -5,9 +5,6 @@
 #  \____\___/|_|  |_|_|   |_____|_____| |_| |___\___/|_| \_|
 #
 
-# Load more completions
-fpath=($DOTFILES/zsh/plugins/zsh-completions/src $fpath)
-
 # Should be called before compinit
 zmodload zsh/complist
 

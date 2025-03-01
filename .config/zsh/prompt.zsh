@@ -1,29 +1,24 @@
 setopt PROMPT_SUBST
 
-PROMPT='%F{magenta}[%n@%m]%f %F{green}%~%f %F{red}->%f '
-
-# Функция для обновления цвета промпта в зависимости от режима
+# color of arrow changes depending on vi mode
 function update_prompt_mode() {
     if [[ $KEYMAP == vicmd ]]; then
-        PROMPT='%F{magenta}[%n@%m]%f %F{green}%~%f %F{blue}->%f '
+        PROMPT='%F{magenta}[%n@%m]%f %F{green}%5~%f %F{blue}%f '
     else
-        PROMPT='%F{magenta}[%n@%m]%f %F{green}%~%f %F{red}->%f '
+        PROMPT='%F{magenta}[%n@%m]%f %F{green}%5~%f %F{red}%f '
     fi
 }
 
-# Хук для инициализации линии редактирования
 function zle-line-init() {
 update_prompt_mode
 zle reset-prompt
 }
 
-# Хук для изменения режима
 function zle-keymap-select() {
 update_prompt_mode
 zle reset-prompt
 }
 
-# Подключаем хуки
 zle -N zle-line-init
 zle -N zle-keymap-select
 
