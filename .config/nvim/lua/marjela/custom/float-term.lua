@@ -1,5 +1,3 @@
-vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
-
 local state = {
     floating = {
         buf = -1,
@@ -44,13 +42,5 @@ local toggle_term = function ()
         vim.api.nvim_win_hide(state.floating.win)
     end
 end
-
--- auto insert on entering float-term
-vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter" }, {
-    pattern = "term://*",
-    callback = function()
-        vim.cmd.startinsert()
-    end
-})
 
 vim.keymap.set({"n", "t"}, "<A-t>", toggle_term)

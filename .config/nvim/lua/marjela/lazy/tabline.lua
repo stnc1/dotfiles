@@ -11,10 +11,7 @@ return {
                 },
                 custom_filter = function(buf_number, buf_numbers)
                     local buftype = vim.bo[buf_number].buftype
-                    if buftype == "quickfix" then
-                        return false
-                    end
-                    if buftype == "terminal" then
+                    if buftype == "nofile" or buftype == "quickfix" then
                         return false
                     end
                     return true
@@ -24,71 +21,7 @@ return {
             highlights = {
                fill = {
                    bg = '#1a1a1c'
-               },
-            --    buffer_selected = {
-            --        fg = '#a5a8bb',
-            --        bg = '#2a2a37',
-            --        bold = true,
-            --        italic = true,
-            --    },
-            --    numbers_selected = {
-            --        fg = '#a5a8bb',
-            --        bg = '#2a2a37',
-            --        bold = true,
-            --        italic = true,
-            --    },
-            --    buffer_visible = {
-            --        fg = '#54546d',
-            --        bg = '#1f1f28',
-            --    },
-            --    numbers_visible = {
-            --        fg = '#54546d',
-            --        bg = '#1f1f28'
-            --    },
-            --    numbers = {
-            --        fg = '#54546d',
-            --        bg = '#1f1f28'
-            --    },
-            --    separator = {
-            --        fg = '#1f1f28',
-            --        bg = '#1f1f28'
-            --    },
-            --    modified = {
-            --        fg = '#54546d',
-            --        bg = '#1f1f28'
-            --    },
-            --    modified_visible = {
-            --        fg = '#54546d',
-            --        bg = '#1f1f28'
-            --    },
-            --    modified_selected = {
-            --        fg = '#54546d',
-            --        bg = '#2a2a37'
-            --    },
-            --    indicator_selected = {
-            --        fg = '#54546d',
-            --        bg = '#54546d',
-            --    },
-            --    indicator_visible = {
-            --        fg = '#54546d',
-            --        bg = '#54546d',
-            --    },
-            --    close_button = {
-            --        fg = '#54546d',
-            --        bg = '#1f1f28'
-            --    },
-            --    close_button_visible = {
-            --        fg = '#54546d',
-            --        bg = '#1f1f28'
-            --    },
-            --    close_button_selected = {
-            --        fg = '#54546d',
-            --        bg = '#2a2a37'
-            --    },
-            --    fill = {
-            --        fg = '#54546d',
-            --        bg = '#1f1f28'
-            --    },
+               }
             }
         })
 

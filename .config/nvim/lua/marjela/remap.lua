@@ -27,12 +27,18 @@ vim.keymap.set("v", "<leader>d", "\"_d")
 vim.keymap.set("n", "<leader>d", "\"_d")
 
 -- close buf
-vim.keymap.set('n', '<Leader>q', ':bd<CR>')
+vim.keymap.set("n", "<Leader>q", ":bd<CR>")
 
 -- format buf
-vim.keymap.set('n', '<Leader>F', 'ggVG=')
+vim.keymap.set("n", "<Leader>F", function()
+    local pos = vim.api.nvim_win_get_cursor(0)
+    vim.cmd.normal("ggVG=")
+    vim.cmd(":" .. pos[1])
+end)
 
-vim.api.nvim_create_autocmd('LspAttach', {
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
+
+vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(e)
         local opts = { buffer = e.buf }
         vim.keymap.set("n", "gd", function() require('telescope.builtin').lsp_definitions() end, opts)
