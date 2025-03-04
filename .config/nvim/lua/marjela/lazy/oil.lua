@@ -5,10 +5,11 @@ return {
     config = function()
         require("oil").setup({
             columns = {
-                { "type", highlight = "Directory" },
+                { "type" },
                 { "permissions", highlight = "Special" },
                 { 'size', highlight = "DiagnosticError" }
-            }
+            },
+            skip_confirm_for_simple_edits = true
         })
 
         vim.keymap.set("n", "-", function()
