@@ -6,13 +6,12 @@ exec --no-startup-id dex-autostart --autostart --environment i3
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
 # my rofi config
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id zsh -c "rofi -show drun"
 
 ## Keybindings
 # start a terminal
@@ -137,10 +136,6 @@ bindsym Ctrl+Print exec --no-startup-id maim --format=png --window $(xdotool get
 bindsym Shift+Print exec --no-startup-id maim --format=png --select | xclip -selection clipboard -t image/png
 
 ## Misc
-# Removing title-bar
-default_border pixel 3
-default_floating_border pixel 3
-
 # move focused workspace between monitors
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
@@ -162,9 +157,15 @@ bindsym $mod+F2 exec ~/.config/i3/toggle_sink.sh
 exec pactl set-default-sink $(pactl list sinks short | awk '/Fenda/ {print $2}') | pkill -SIGRTMIN+1 i3blocks
 
 ## Appearance 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:monospace 12
+default_border pixel 2
+default_floating_border pixel 2
+# borders only if there is more than one windows
+smart_borders on
+# always gaps
+gaps inner 10px
+
+# Font for window titles
+font pango:Iosevka 15
 
 # tabs title format
 for_window [class=".*[Ff]irefox.*"] title_format "firefox"
@@ -176,37 +177,30 @@ for_window [class=".*[Pp]ostman.*"] title_format "postman"
 for_window [class=".*[Oo][Bb][Ss].*"] title_format "obs"
 for_window [class=".*[Oo][Bb][Ss]i.*"] title_format "obsidian"
 
-# always gaps
-gaps inner 10px
-# borders only if there is more than one windows
-smart_borders on
-
 # color
-set $background #373b41
-set $border     #1f1f26
-set $f_border   #373b41
-set $foreground #7e9cd8
-set $text #838385
+set $black      #ffffff
+set $white      #000000
+set $backgr     #232326
+set $dark       #535457
+set $highlight  #888888
 
-# class                 border  backgr.   text        indicator child_border
-client.focused          $border $f_border $foreground $f_border $f_border
-client.focused_inactive $border $border   $text       $border   $border
-client.unfocused        $border $border   $text       $border   $border
-client.urgent           $border $border   #e46876     $border   $border
-client.placeholder      $border $border   $text       $border   $border
-client.background       $border
+#class                   border      backgr   text        indicator   child_border
+client.focused           $highlight  $backgr  $highlight  $highlight  $highlight
+client.focused_inactive  #5f676a     $backgr  $dark       $highlight  $highlight
+client.unfocused         $backgr     $backgr  $dark       $white      $white
+client.urgent            $backgr     $backgr  #e46876     $highlight  #e46876
+client.placeholder       $white      $backgr  $black      $white      $white
+client.background        $black                                       
 
 # bar config
 exec_always --no-startup-id ~/.config/i3/polybar.sh &
 
 # wallpapers
-exec --no-startup-id nitrogen --restore
+exec_always --no-startup-id nitrogen --restore
 
-# x11
-
-# monitors
-exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --rate 180 --primary
-exec --no-startup-id xrandr --output DP-0 --mode 1920x1080 --rate 165 --left-of HDMI-0 
+## x11
+# load xrandr monitor profile
+exec autorandr --change
 
 # keymaps
 exec --no-startup-id "setxkbmap -option 'caps:ctrl_modifier' -option 'grp:lwin_toggle' && xcape -e 'Control_L=Escape'"

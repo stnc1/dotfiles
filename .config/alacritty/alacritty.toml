@@ -11,38 +11,25 @@ bindings = [
     { key = "n", mods="Shift|Control", action="ScrollLineDown" }
 ]
 
-[[colors.indexed_colors]]
-color = "0xffa066"
-index = 16
-
-[[colors.indexed_colors]]
-color = "0xff5d62"
-index = 17
-
-[colors.bright]
-black = "0x727169"
-blue = "0x7fb4ca"
-cyan = "0x7aa89f"
-green = "0x98bb6c"
-magenta = "0x938aa9"
-red = "0xe82424"
-white = "0xdcd7ba"
-yellow = "0xe6c384"
+[colors.primary]
+background = "#232326"
+foreground = "#a7aab0"
 
 [colors.normal]
-black = "0x090618"
-blue = "0x7e9cd8"
-cyan = "0x6a9589"
-green = "0x76b46a"
-magenta = "0x957fb8"
-red = "0xc34043"
-white = "0xc8c093"
-yellow = "0xc0a36e"
-
-[colors.primary]
-background = "0x1f1f28"
-foreground = "0xdcd7ba"
-
-[colors.selection]
-background = "0x2d4f67"
-foreground = "0xc8c093"
+black    =  "#101012"
+red      =  "#de5d68"
+green    =  "#8fb573"
+yellow   =  "#dbb671"
+blue     =  "#57a5e5"
+magenta  =  "#bb70d2"
+cyan     =  "#51a8b3"
+white    =  "#abb2bf"
+[colors.bright]     
+black    =  "#5a5b5e"
+red      =  "#e87a82"
+green    =  "#a4c88c"
+yellow   =  "#e5c58d"
+blue     =  "#6eb7f0"
+magenta  =  "#ca8be0"
+cyan     =  "#6fbcc6"
+white    =  "#c0c7d5"
