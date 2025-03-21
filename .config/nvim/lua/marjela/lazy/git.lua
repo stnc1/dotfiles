@@ -1,6 +1,21 @@
 return {
     {
-        "tpope/vim-fugitive"
+        "NeogitOrg/neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "sindrets/diffview.nvim",
+            "nvim-telescope/telescope.nvim"
+        },
+        config = function()
+            require("neogit").setup({
+                graph_style = "unicode",
+                kind = "replace"
+            })
+
+            vim.keymap.set("n", "<leader>gg", function()
+                vim.cmd("Neogit")
+            end)
+        end
     },
     {
         "lewis6991/gitsigns.nvim",
@@ -27,15 +42,18 @@ return {
                         gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
                     end)
 
-                    -- show blame for line in hover
-                    map('n', '<leader>hb', function()
-                        gitsigns.blame_line({ full = true })
-                    end)
-
                     -- Text object
                     map({'o', 'x'}, 'ih', gitsigns.select_hunk)
                 end
             })
+        end
+    },
+    {
+        "tpope/vim-fugitive",
+        config = function()
+            vim.keymap.set("n", "<leader>gb", function()
+                vim.cmd("G blame")
+            end)
         end
     }
 }

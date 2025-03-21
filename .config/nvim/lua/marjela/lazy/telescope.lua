@@ -5,7 +5,6 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim", -- required
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- for better perfomance
-            "nvim-telescope/telescope-ui-select.nvim" -- for using telescope buffer rather than quick-fix buffer
         },
 
         config = function()
@@ -32,14 +31,10 @@ return {
                 },
                 extensions = {
                     fzf = {},
-                    ["ui-select"] = {
-                        require("telescope.themes").get_dropdown {}
-                    }
                 }
             }
 
             telescope.load_extension("fzf")
-            telescope.load_extension("ui-select")
 
             local builtin = require("telescope.builtin")
 
@@ -51,15 +46,16 @@ return {
             vim.keymap.set("n", "<leader>fh", function()
                 builtin.find_files({ cwd = os.getenv("HOME")})
             end, {})
-            -- find files in dir where nvim was opened 
-            vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 
-            -- find files in git repo (faster) 
-            vim.keymap.set("n", "<leader>fg", function()
-                builtin.git_files({
-                    cwd = require("telescope.utils").buffer_dir(),
-                    show_untracked = true
-                })
+            vim.keymap.set("n", "<leader>ff", function()
+                if pcall( function()
+                    builtin.git_files({
+                        cwd = require("telescope.utils").buffer_dir(),
+                        show_untracked = true
+                    })
+                end) == false then
+                    builtin.find_files()
+                end
             end, {})
 
             local function git_root()

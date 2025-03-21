@@ -15,6 +15,9 @@ alias l='ls -l --color=auto --human-readable'
 
 alias g='git'
 
-alias srczsh='source ~/.config/zsh/.zshrc'
+alias sozsh='source ~/.config/zsh/.zshrc'
+alias soenv='source ~/.config/zsh/.zshenv'
 
 alias nv='nvim'
+
+alias ff='fastfetch -c neofetch'

@@ -207,3 +207,19 @@ exec --no-startup-id "setxkbmap -option 'caps:ctrl_modifier' -option 'grp:lwin_t
 
 # disable sleep
 exec --no-startup-id xset s off -dpms 
+
+## i3-restore
+# saving
+mode "exit: [l]ogout, [r]eboot, [h]ibernate, [s]leep, [p]oweroff" {
+    bindsym l exec "~/Downloads/repos/i3-restore/i3-save && i3-msg 'exit'"
+    bindsym r exec "~/Downloads/repos/i3-restore/i3-save && systemctl reboot"
+    bindsym h exec systemctl hibernate
+    bindsym s exec systemctl suspend
+    bindsym p exec "~/Downloads/repos/i3-restore/i3-save && systemctl poweroff"
+    # Fallback if script fails to save
+    bindsym Return exec i3-msg exit
+    bindsym Escape mode "default"
+}
+
+# restoring session
+exec ~/Downloads/repos/i3-restore/i3-restore

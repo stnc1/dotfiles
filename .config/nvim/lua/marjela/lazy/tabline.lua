@@ -6,7 +6,7 @@ return {
             options = {
                 numbers = "none",
                 indicator = {
-                    icon = '▎',
+                    icon = "▎",
                     style = "icon"
                 },
                 groups = {
@@ -25,7 +25,7 @@ return {
 
                 highlights = {
                     fill = {
-                        bg = '#1a1a1c'
+                        bg = "#1a1a1c"
                     }
                 }
             })
@@ -39,17 +39,17 @@ return {
             vim.cmd("BufferLineCyclePrev")
         end, opts)
 
-        vim.keymap.set({"n", "t"}, "<leader>n", function()
+        vim.keymap.set("n", "<leader>n", function()
             vim.cmd("BufferLineMoveNext")
         end, opts)
-        vim.keymap.set({"n", "t"}, "<leader>b", function()
+        vim.keymap.set("n", "<leader>b", function()
             vim.cmd("BufferLineMovePrev")
         end, opts)
 
-        vim.keymap.set({"n", "t"}, "<C-n>", function()
+        vim.keymap.set({"n", "t"}, "<C-p>", function()
             vim.cmd("BufferLineTogglePin")
         end, opts)
-        vim.keymap.set({"n", "t"}, "<C-p>", function()
+        vim.keymap.set({"n", "t"}, "<C-n>", function()
             vim.cmd("BufferLinePick")
         end, opts)
     end

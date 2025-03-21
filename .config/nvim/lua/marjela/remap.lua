@@ -4,7 +4,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- center cursor while navigating
 vim.keymap.set("n", "<c-d>", "<c-d>zz")
-vim.keymap.set("n", "<c-u>",  "<c-u>zz")
+vim.keymap.set("n", "<c-u>", "<c-u>zz")
 
 -- keeps searching results in the middle
 vim.keymap.set("n", "n", "nzzzv")
@@ -27,34 +27,15 @@ vim.keymap.set("v", "<leader>d", "\"_d")
 vim.keymap.set("n", "<leader>d", "\"_d")
 
 -- close buf
-vim.keymap.set("n", "<Leader>q", ":bd<CR>")
+vim.keymap.set("n", "<leader>q", ":bd<CR>")
 
--- format buf
-vim.keymap.set("n", "<Leader>F", function()
-    local pos = vim.api.nvim_win_get_cursor(0)
-    vim.cmd.normal("ggVG=")
-    vim.cmd(":" .. pos[1])
-end)
+-- between tabs for neogit
+vim.keymap.set("n", "]t", ":tabnext")
+vim.keymap.set("n", "[t", ":tabprev")
+vim.keymap.set("n", "<leader>tq", ":tabclose")
 
+-- quickfix list
+-- TODO
+
+-- exit terminal mode
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
-
-vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(e)
-        local opts = { buffer = e.buf }
-        vim.keymap.set("n", "gd", function() require('telescope.builtin').lsp_definitions() end, opts)
-        vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
-        vim.keymap.set("n", "gI", function() vim.lsp.buf.implementation() end, opts)
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-
-        vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-        vim.keymap.set("n", "<leader>rr", function() require('telescope.builtin').lsp_references() end, opts)
-        vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("i", "<C-d>", function() vim.lsp.buf.signature_help() end, opts)
-
-        vim.keymap.set("n", "<leader>od", function() vim.diagnostic.open_float() end, opts)
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-
-        vim.lsp.get_client_by_id(e.data.client_id).server_capabilities.semanticTokensProvider = nil
-    end
-})
