@@ -12,20 +12,14 @@ return {
             require("nvim-highlight-colors").setup({})
         end
     },
+    { -- for using git as pager
+        "powerman/vim-plugin-AnsiEsc"
+    },
     { -- auto commenting
         "tpope/vim-commentary"
     },
     {
         "tpope/vim-repeat"
-    },
-    {
-        "ahmedkhalf/project.nvim",
-        config = function()
-            require("project_nvim").setup {
-                patterns = { ".git", "Makefile", "dockerfile" },
-                exclude_dirs = {},
-            }
-        end
     },
     {
         "chrishrb/gx.nvim",
@@ -49,7 +43,7 @@ return {
             })
         end
     },
-    {
+    { -- : commands autocomplete
         "gelguy/wilder.nvim",
         dependencies = {
             "roxma/nvim-yarp",
@@ -62,17 +56,9 @@ return {
                     ":"
                 },
                 next_key = "<tab>",
-                previous_key = "<C-q>"
+                previous_key = "<C-q>",
+                accept_key = "<C-a>"
             })
-
-            wilder.set_option("renderer", wilder.popupmenu_renderer(
-                wilder.popupmenu_border_theme({
-                    highlights = {
-                        border = "Normal"
-                    },
-                    border = "rounded"
-                })
-            ))
 
             wilder.set_option("pipeline", {
                 wilder.branch(

@@ -5,7 +5,7 @@ return {
         require("nvim-treesitter.configs").setup({
             -- A list of parser names, or "all"
             ensure_installed = {
-                "vimdoc", "c", "lua", "bash", "java", "sql", "markdown", "markdown_inline"
+                "vimdoc", "c", "lua", "bash", "java", "sql", "markdown", "markdown_inline", "go"
             },
             sync_install = false,
             auto_install = true,
@@ -20,11 +20,11 @@ return {
             ignore_install = {}
         })
 
-        local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-        treesitter_parser_config.templ = {
+        local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+        parser_config.templ = {
             install_info = {
                 url = "https://github.com/vrischmann/tree-sitter-templ.git",
-                files = {"src/parser.c", "src/scanner.c"},
+                files = { "src/parser.c", "src/scanner.c" },
                 branch = "master",
             }
         }

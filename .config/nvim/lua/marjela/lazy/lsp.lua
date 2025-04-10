@@ -1,10 +1,6 @@
 return {
     {
         "neovim/nvim-lspconfig",
-        dependencies = {
-            "hrsh7th/nvim-cmp",
-            "hrsh7th/cmp-nvim-lsp",
-        },
 
         config = function()
             local lspconfig = require("lspconfig")
@@ -27,42 +23,23 @@ return {
                 }
             })
 
-            -- maybe cycle
-            lspconfig.clangd.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.gopls.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.sqlls.setup({
-                capabilities = capabilities
-            })
-            lspconfig.yamlls.setup({
-                capabilities = capabilities
-            })
-            lspconfig.lemminx.setup({
-                capabilities = capabilities
-            })
-            lspconfig.taplo.setup({
-                capabilities = capabilities
-            })
-            lspconfig.dockerls.setup({
-                capabilities = capabilities
-            })
-            lspconfig.docker_compose_language_service.setup({
-                capabilities = capabilities
-            })
+            local servers = {
+                clangd = {},
+                gopls = {},
+                sqlls = {},
+                bashls = {},
+                yamlls = {},
+                lemminx = {},
+                taplo = {},
+                dockerls = {},
+                docker_compose_language_service = {}
+            }
 
-            -- Error detected while processing LspAttach Autocommands for "*":
-            -- Error executing lua callback: /usr/share/nvim/runtime/lua/vim/lsp/_dynamic.lua:64: attempt to index local 'opts' (a number value)
-            -- stack traceback:
-            --     /usr/share/nvim/runtime/lua/vim/lsp/_dynamic.lua:64: in function 'get'
-            --     /usr/share/nvim/runtime/lua/vim/lsp/_dynamic.lua:83: in function 'supports_method'
-            --     /home/marjela/.config/nvim/lua/marjela/lazy/lsp.lua:62: in function </home/marjela/.config/nvim/lua/marjela/lazy/lsp.lua:57>
-            --     [C]: in function 'nvim_exec_autocmds'
-            --     /usr/share/nvim/runtime/lua/vim/lsp/client.lua:948: in function '_on_attach'
-            --     /usr/share/nvim/runtime/lua/vim/lsp/client.lua:616: in function ''
-            --     vim/_editor.lua: in function <vim/_editor.lua:0>
+            for name, _ in pairs(servers) do
+                lspconfig[name].setup({
+                    capabilities = capabilities
+                })
+            end
 
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = function(args)
@@ -90,17 +67,15 @@ return {
                     vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
                     vim.keymap.set("i", "<C-d>", function() vim.lsp.buf.signature_help() end, opts)
 
-                    vim.keymap.set("n", "<leader>od", function() vim.diagnostic.open_float() end, opts)
-                    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-                    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+                    vim.keymap.set("n", "<leader>do", function() vim.diagnostic.open_float() end, opts)
+                    vim.keymap.set("n", "<leader>dl", function() vim.diagnostic.setqflist() end, opts)
+                    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, opts)
+                    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, opts)
 
                     -- disable lsp highlighting
                     vim.lsp.get_client_by_id(args.data.client_id).server_capabilities.semanticTokensProvider = nil
                 end
             })
-
-            -- настройка окна документации
-            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
         end
     },
     {
@@ -114,7 +89,6 @@ return {
         "williamboman/mason-lspconfig.nvim",
 
         config = function()
-            ---@diagnostic disable-next-line: missing-fields
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "clangd",                         --  c/c++

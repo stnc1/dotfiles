@@ -30,12 +30,16 @@ vim.keymap.set("n", "<leader>d", "\"_d")
 vim.keymap.set("n", "<leader>q", ":bd<CR>")
 
 -- between tabs for neogit
-vim.keymap.set("n", "]t", ":tabnext")
-vim.keymap.set("n", "[t", ":tabprev")
-vim.keymap.set("n", "<leader>tq", ":tabclose")
+vim.keymap.set("n", "]t", ":tabnext<CR>")
+vim.keymap.set("n", "[t", ":tabprev<CR>")
+vim.keymap.set("n", "<leader>tq", ":tabclose<CR>")
 
 -- quickfix list
--- TODO
+vim.keymap.set("n", "<leader>co", ":copen<CR><C-w>k")
+vim.keymap.set("n", "<leader>cc", ":ccl<CR>")
+vim.keymap.set("n", "<C-j>", ":cnext<CR>")
+vim.keymap.set("n", "<C-k>", ":cprev<CR>")
+
 
 -- exit terminal mode
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")

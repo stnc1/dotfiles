@@ -30,8 +30,6 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
-vim.opt.updatetime = 50
-
 vim.g.mapleader = " "
 
 vim.opt.langmap =
@@ -39,5 +37,4 @@ vim.opt.langmap =
 
 vim.opt.nrformats = "bin,hex,alpha"
 
---vim.opt.list = true
---vim.opt.listchars = "tab:,trail:·,space:·"
+vim.opt.autoread = true
