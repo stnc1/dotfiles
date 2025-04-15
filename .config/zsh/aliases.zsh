@@ -20,4 +20,7 @@ alias soenv='source ~/.config/zsh/.zshenv'
 
 alias nv='nvim'
 
-alias ff='fastfetch -c neofetch'
+alias ff='fastfetch'
+alias nf='fastfetch -c neofetch'
+alias pf='fastfetch -c paleofetch'
+alias sf='fastfetch -c screenfetch'
