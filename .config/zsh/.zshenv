@@ -13,5 +13,3 @@ export GTK_THEME=Adwaita:dark      # default dark theme for gtk apps
 
 export FZF_DEFAULT_COMMAND='fd --type f --type d --strip-cwd-prefix --hidden --follow --exclude .wine'
 export FZF_CTRL_T_COMMAND='fd --type f --type d --strip-cwd-prefix --hidden --follow --exclude .wine'
-
-export WINEPREFIX=$HOME/.config/wine

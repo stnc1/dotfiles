@@ -12,9 +12,6 @@ return {
             require("nvim-highlight-colors").setup({})
         end
     },
-    { -- for using git as pager
-        "powerman/vim-plugin-AnsiEsc"
-    },
     { -- auto commenting
         "tpope/vim-commentary"
     },
@@ -57,7 +54,7 @@ return {
                 },
                 next_key = "<tab>",
                 previous_key = "<C-q>",
-                accept_key = "<C-a>"
+                accept_key = "<C-y>"
             })
 
             wilder.set_option("pipeline", {

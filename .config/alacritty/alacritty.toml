@@ -7,29 +7,31 @@ style = "Regular"
 
 [keyboard]
 bindings = [
-    { key = "p", mods="Shift|Control", action="ScrollLineUp" },
-    { key = "n", mods="Shift|Control", action="ScrollLineDown" }
+    { key = "p", mods = "Shift|Control", action = "ScrollLineUp" },
+    { key = "n", mods = "Shift|Control", action = "ScrollLineDown" },
 ]
 
+# Default colors
 [colors.primary]
-background = "#232326"
+background = "#131313"
 foreground = "#a7aab0"
 
+# Normal colors
 [colors.normal]
-black    =  "#101012"
-red      =  "#de5d68"
-green    =  "#8fb573"
-yellow   =  "#dbb671"
-blue     =  "#57a5e5"
-magenta  =  "#bb70d2"
-cyan     =  "#51a8b3"
-white    =  "#abb2bf"
-[colors.bright]     
-black    =  "#5a5b5e"
-red      =  "#e87a82"
-green    =  "#a4c88c"
-yellow   =  "#e5c58d"
-blue     =  "#6eb7f0"
-magenta  =  "#ca8be0"
-cyan     =  "#6fbcc6"
-white    =  "#c0c7d5"
+black = "#101012"
+red = "#de5d68"
+green = "#8fb573"
+yellow = "#dbb671"
+blue = "#57a5e5"
+magenta = "#bb70d2"
+cyan = "#51a8b3"
+white = "#abb2bf"
+[colors.bright]
+black = "#5a5b5e"
+red = "#e87a82"
+green = "#a4c88c"
+yellow = "#e5c58d"
+blue = "#6eb7f0"
+magenta = "#ca8be0"
+cyan = "#6fbcc6"
+white = "#c0c7d5"

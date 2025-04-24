@@ -1,31 +1,64 @@
 return {
     {
+        "williamboman/mason.nvim",
+        config = function()
+            require("mason").setup()
+        end
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = {
+                    "clangd", --  c/c++
+                    "gopls",  --  go
+                    -- "lua_ls",                         --  lua
+
+                    "sqlls",                          --  sql
+                    "bashls",                         --  bash
+
+                    "yamlls",                         --  yaml
+                    "lemminx",                        --  xml
+                    "taplo",                          --  toml
+
+                    "dockerls",                       --  dockerfile
+                    "docker_compose_language_service" --  dockercompose
+                },
+                automatic_installation = true,
+            })
+        end
+    },
+    {
         "neovim/nvim-lspconfig",
 
         config = function()
             local lspconfig = require("lspconfig")
+            local configs = require("lspconfig.configs")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            lspconfig.lua_ls.setup({ --lua
-                capabilities = capabilities,
-                settings = {
-                    Lua = {
-                        runtime = {
-                            version = "LuaJIT"
+            -- forced to use this lsp cause lua_ls doesn't work att all i don't know why xoxo
+            if not configs.emmylua_ls then
+                configs.emmylua_ls = {
+                    default_config = {
+                        cmd = { vim.fn.stdpath("data") .. "/mason/packages/emmylua_ls/emmylua_ls" },
+                        filetypes = { "lua" },
+                        root_dir = lspconfig.util.root_pattern(".git", "."),
+                        settings = {
+                            Lua = {
+                                diagnostics = {
+                                    globals = { "vim" }
+                                },
+                            },
                         },
-                        diagnostics = {
-                            globals = { "vim", "it", "describe", "before_each", "after_each" }
-                        },
-                        workspace = {
-                            library = vim.api.nvim_get_runtime_file("", true)
-                        }
                     }
                 }
-            })
+            end
 
             local servers = {
                 clangd = {},
                 gopls = {},
+                emmylua_ls = {},
+                -- lua_ls = {},
                 sqlls = {},
                 bashls = {},
                 yamlls = {},
@@ -51,7 +84,14 @@ return {
                         vim.api.nvim_create_autocmd("BufWritePre", {
                             buffer = args.buf,
                             callback = function()
-                                vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+                                vim.lsp.buf.format({
+                                    bufnr = args.buf,
+                                    id = client.id,
+                                    formatting_options = {
+                                        tabSize = 4,
+                                        insertSpaces = true
+                                    }
+                                })
                             end
                         })
                     end
@@ -62,57 +102,29 @@ return {
                     vim.keymap.set("n", "gI", function() vim.lsp.buf.implementation() end, opts)
                     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
 
-                    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-                    vim.keymap.set("n", "<leader>rr", function() vim.lsp.buf.references() end, opts)
-                    vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-                    vim.keymap.set("i", "<C-d>", function() vim.lsp.buf.signature_help() end, opts)
+                    vim.keymap.set("n", "<leader>ln", function() vim.lsp.buf.rename() end, opts)
+                    vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.references() end, opts)
+                    vim.keymap.set("n", "<leader>lc", function() vim.lsp.buf.code_action() end, opts)
+                    vim.keymap.set("i", "<C-s>", function() vim.lsp.buf.signature_help() end, opts)
 
-                    vim.keymap.set("n", "<leader>do", function() vim.diagnostic.open_float() end, opts)
-                    vim.keymap.set("n", "<leader>dl", function() vim.diagnostic.setqflist() end, opts)
+                    vim.keymap.set("n", "<leader>ld", function() vim.diagnostic.open_float() end, opts)
+                    vim.keymap.set("n", "<leader>ll", function() vim.diagnostic.setqflist() end, opts)
+
                     vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, opts)
                     vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, opts)
 
                     -- disable lsp highlighting
-                    vim.lsp.get_client_by_id(args.data.client_id).server_capabilities.semanticTokensProvider = nil
+                    -- vim.lsp.get_client_by_id(args.data.client_id).server_capabilities.semanticTokensProvider
+                    -- = nil
                 end
             })
         end
     },
-    {
-        "williamboman/mason.nvim",
-
-        config = function()
-            require('mason').setup()
-        end
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-
-        config = function()
-            require("mason-lspconfig").setup({
-                ensure_installed = {
-                    "clangd",                         --  c/c++
-                    "gopls",                          --  go
-                    "lua_ls",                         --  lua
-
-                    "sqlls",                          --  sql
-                    "bashls",                         --  bash
-
-                    "yamlls",                         --  yaml
-                    "lemminx",                        --  xml
-                    "taplo",                          --  toml
-
-                    "dockerls",                       --  dockerfile
-                    "docker_compose_language_service" --  dockercompose
-                }
-            })
-        end
-    },
-    { -- нужно для корректного отображения api nvim'а lsp
-        "folke/neodev.nvim",
-        opts = {},
-        config = function()
-            require("neodev").setup()
-        end
-    }
+    -- { -- for proper lua lsp integration with nvim api
+    --     "folke/neodev.nvim",
+    --     opts = {},
+    --     config = function()
+    --         require("neodev").setup()
+    --     end
+    -- }
 }

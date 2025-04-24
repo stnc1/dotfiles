@@ -1,68 +1,8 @@
 return {
     {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        priority = 1000,
-
+       "rebelot/kanagawa.nvim",
         config = function()
-            require("catppuccin").setup()
-
-            -- setup must be called before loading
-            --vim.cmd.colorscheme "catppuccin"
+            vim.cmd("colorscheme kanagawa")
         end
-    },
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-
-        config = function()
-            --vim.cmd.colorscheme "tokyonight-night"
-        end
-    },
-    {
-        "navarasu/onedark.nvim",
-        config = function()
-            local onedark = require("onedark")
-
-            onedark.setup {
-                style = "warmer"
-            }
-            onedark.load()
-        end
-    },
-    {
-        "rebelot/kanagawa.nvim",
-
-        config = function()
-            -- Default options:
-            require('kanagawa').setup({
-                compile = false,
-                undercurl = true,
-                commentStyle = { italic = true },
-                functionStyle = {},
-                keywordStyle = { italic = true},
-                statementStyle = { bold = true },
-                typeStyle = {},
-                transparent = false,
-                dimInactive = false,
-                terminalColors = true,
-                colors = {
-                    palette = {},
-                    theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
-                },
-                overrides = function(colors)
-                    return {}
-                end,
-                theme = "wave",
-                background = {
-                    dark = "wave",
-                    light = "lotus"
-                },
-            })
-
-            --vim.cmd("colorscheme kanagawa")
-        end
-    },
+    }
 }

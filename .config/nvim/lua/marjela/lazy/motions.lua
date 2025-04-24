@@ -1,26 +1,14 @@
 return {
     {
-        "folke/flash.nvim",
-        event = "VeryLazy",
-        opts = {
-            modes = {
-                char = { -- disable fFtT enhansed motions
-                    enabled = false
-                }
-            }
-        },
-        keys = {
-            { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,   desc = "Flash" },
-            { "<c-s>", mode = { "c" },           function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-        },
-    },
-    {
         "jinh0/eyeliner.nvim",
         config = function()
             require("eyeliner").setup({
                 highlight_on_key = true,
                 dim = true
             })
+
+            vim.api.nvim_set_hl(0, 'EyelinerPrimary', { fg='#ffffff', bold = true, underline = true })
+            vim.api.nvim_set_hl(0, 'EyelinerSecondary', { fg='#999999', underline = true })
         end
     },
     {

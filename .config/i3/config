@@ -12,6 +12,7 @@ tiling_drag modifier titlebar
 
 # my rofi config
 bindsym $mod+d exec --no-startup-id zsh -c "rofi -show drun"
+#bindsym $mod+d exec dmenu_run -b
 
 ## Keybindings
 # start a terminal
@@ -114,12 +115,6 @@ mode "resize" {
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -137,8 +132,8 @@ bindsym Shift+Print exec --no-startup-id maim --format=png --select | xclip -sel
 
 ## Misc
 # move focused workspace between monitors
-bindsym $mod+Ctrl+greater move workspace to output right
-bindsym $mod+Ctrl+less move workspace to output left
+bindsym $mod+Shift+greater move workspace to output right
+bindsym $mod+Shift+less move workspace to output left
 
 # lock screen
 bindsym $mod+Ctrl+l exec ~/.config/i3/i3lock.sh
@@ -165,7 +160,7 @@ smart_borders on
 gaps inner 10px
 
 # Font for window titles
-font pango:Iosevka 15
+font pango:Iosevka 12
 
 # tabs title format
 for_window [class=".*[Ff]irefox.*"] title_format "firefox"
@@ -201,25 +196,11 @@ exec_always --no-startup-id nitrogen --restore
 ## x11
 # load xrandr monitor profile
 exec autorandr --change
-
 # keymaps
 exec --no-startup-id "setxkbmap -option 'caps:ctrl_modifier' -option 'grp:lwin_toggle' && xcape -e 'Control_L=Escape'"
-
 # disable sleep
 exec --no-startup-id xset s off -dpms 
 
 ## i3-restore
-# saving
-mode "exit: [l]ogout, [r]eboot, [h]ibernate, [s]leep, [p]oweroff" {
-    bindsym l exec "~/Downloads/repos/i3-restore/i3-save && i3-msg 'exit'"
-    bindsym r exec "~/Downloads/repos/i3-restore/i3-save && systemctl reboot"
-    bindsym h exec systemctl hibernate
-    bindsym s exec systemctl suspend
-    bindsym p exec "~/Downloads/repos/i3-restore/i3-save && systemctl poweroff"
-    # Fallback if script fails to save
-    bindsym Return exec i3-msg exit
-    bindsym Escape mode "default"
-}
-
 # restoring session
 exec ~/Downloads/repos/i3-restore/i3-restore
