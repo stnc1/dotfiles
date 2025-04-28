@@ -6,7 +6,7 @@ return {
         },
         build = "make install_jsregexp",
         config = function()
-            dofile("../snippets.lua")
+            dofile("/home/marjela/.config/nvim/lua/marjela/snippets.lua")
         end
     },
     {
