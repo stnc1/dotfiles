@@ -29,7 +29,12 @@ return {
                             symbols = {
                                 modified = '+',      -- Text to show when the buffer is modified
                                 alternate_file = '', -- Text to show to identify the alternate file
-                            }
+                            },
+                            buffers_color = {
+                                -- Same values as the general color option can be used here.
+                                -- active = 'lualine_buffers_normal',     -- Color for active buffer.
+                                active = 'lualine_buffers_inactive', -- Color for inactive buffer.
+                            },
                         }
                     },
                     lualine_y = { 'filesize', 'encoding' },

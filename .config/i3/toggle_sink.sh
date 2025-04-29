@@ -13,16 +13,16 @@ while read line; do
     sinks[${#sinks[@]}]=$index
 
     # Find the current DEFAULT_SINK
-    if grep -q "$defaultSink" <<< "$line"; then
+    if grep -q "$defaultSink" <<<"$line"; then
         defaultIndex=$index
         defaultPos=$i
     fi
 
-    i=$(( $i + 1 ))
-done <<< "$(pactl list sinks short | awk '!/hdmi/ && !/ME6S/ || /Fenda/ {print $2}')"
+    i=$(($i + 1))
+done <<<"$(pactl list sinks short | awk '!/hdmi/ && !/ME6S/ || /Fenda/ {print $2}')"
 
 # Compute the ID of the new DEFAULT_SINK
-newDefaultPos=$(( ($defaultPos + 1) % ${#sinks[@]} ))
+newDefaultPos=$((($defaultPos + 1) % ${#sinks[@]}))
 newDefaultSink=${sinks[$newDefaultPos]}
 
 # Update the DEFAULT_SINK
@@ -37,4 +37,4 @@ while read stream; do
 
     streamId=$(echo $stream | awk '{ print $1 }')
     pactl move-sink-input $streamId @DEFAULT_SINK@
-done <<< "$(pactl list short sink-inputs)"
+done <<<"$(pactl list short sink-inputs)"
