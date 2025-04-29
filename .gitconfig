@@ -11,7 +11,6 @@
     rest = restore
 
     ci = commit
-    cia = commit -a
     amend = commit --amend -a --no-edit
     eamend = commit --amend -a
 

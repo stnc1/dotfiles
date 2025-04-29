@@ -21,3 +21,6 @@
 
 !alacritty/
 !alacritty/**
+
+!tmux/
+!tmux/**

@@ -34,7 +34,6 @@ vim.keymap.set("n", "<leader>tq", ":tabclose<CR>")
 -- buffers
 vim.keymap.set("n", "<C-n>", ":bnext<CR>")
 vim.keymap.set("n", "<C-p>", ":bprev<CR>")
-vim.keymap.set("n", "<leader>q", ":bd<CR>")
 
 -- quickfix list
 vim.keymap.set("n", "<leader>co", ":copen<CR><C-w>k")
