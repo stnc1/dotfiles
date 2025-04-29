@@ -5,6 +5,7 @@ unsetopt beep
 # enable vi mode
 bindkey -v
 
+# C-N and C-P up-down
 bindkey '^P' up-line-or-history
 bindkey '^N' down-line-or-history
 

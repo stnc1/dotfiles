@@ -38,3 +38,5 @@ vim.opt.langmap =
 vim.opt.nrformats = "bin,hex,alpha"
 
 vim.opt.autoread = true
+
+vim.cmd("colorscheme habamax")
