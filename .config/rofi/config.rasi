@@ -11,9 +11,9 @@ configuration {
 }
 
 *{
-    background:     #1f1f28;
-    background-alt: #2b2a38;
-    foreground:     #74738a;
+    background:     #232326;
+    background-alt: #232326;
+    foreground:     #888888;
 }
 
 element.normal.normal {

@@ -10,7 +10,7 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
-# my rofi config
+# rofi
 bindsym $mod+d exec --no-startup-id zsh -c "rofi -show drun"
 #bindsym $mod+d exec dmenu_run -b
 
