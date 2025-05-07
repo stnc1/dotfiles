@@ -41,7 +41,6 @@ return {
                             end
                         end
                     ),
-
                     ["<Tab>"] = cmp.mapping(
                         function(fallback)
                             if cmp.visible() then

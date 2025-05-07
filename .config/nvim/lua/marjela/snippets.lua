@@ -271,13 +271,13 @@ ls.add_snippets("go", {
 })
 
 ls.add_snippets("markdown", {
-    s({ trig = "*", desc = "italics" }, {
+    s({ trig = "*", desc = "italics", priority = 800 }, {
         t "*", i(1, "", { key = "i1" }), t "*", i(0, "", { key = "i0" })
     }),
-    s({ trig = "**", desc = "bold" }, {
+    s({ trig = "**", desc = "bold", priority = 900 }, {
         t "**", i(1, "", { key = "i1" }), t "**", i(0, "", { key = "i0" })
     }),
-    s({ trig = "***", desc = "bold italics" }, {
+    s({ trig = "***", desc = "bold italics", priority = 1000 }, {
         t "***", i(1, "", { key = "i1" }), t "***", i(0, "", { key = "i0" })
     }),
     s({ trig = "-", desc = "bar" }, {
