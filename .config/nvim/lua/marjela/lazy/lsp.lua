@@ -12,7 +12,6 @@ return {
                 ensure_installed = {
                     "clangd", --  c/c++
                     "gopls",  --  go
-                    -- "lua_ls",                         --  lua
 
                     "sqlls",                          --  sql
                     "bashls",                         --  bash
@@ -36,29 +35,9 @@ return {
             local configs = require("lspconfig.configs")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            -- forced to use this lsp cause lua_ls doesn't work att all i don't know why xoxo
-            if not configs.emmylua_ls then
-                configs.emmylua_ls = {
-                    default_config = {
-                        cmd = { vim.fn.stdpath("data") .. "/mason/packages/emmylua_ls/emmylua_ls" },
-                        filetypes = { "lua" },
-                        root_dir = lspconfig.util.root_pattern(".git", "."),
-                        settings = {
-                            Lua = {
-                                diagnostics = {
-                                    globals = { "vim" }
-                                },
-                            },
-                        },
-                    }
-                }
-            end
-
             local servers = {
                 clangd = {},
                 gopls = {},
-                emmylua_ls = {},
-                -- lua_ls = {},
                 sqlls = {},
                 bashls = {},
                 yamlls = {},
@@ -119,12 +98,5 @@ return {
                 end
             })
         end
-    },
-    -- { -- for proper lua lsp integration with nvim api
-    --     "folke/neodev.nvim",
-    --     opts = {},
-    --     config = function()
-    --         require("neodev").setup()
-    --     end
-    -- }
+    }
 }

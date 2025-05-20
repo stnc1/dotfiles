@@ -17,3 +17,5 @@ alias ff='fastfetch'
 alias nf='fastfetch -c neofetch'
 alias pf='fastfetch -c paleofetch'
 alias sf='fastfetch -c screenfetch'
+
+alias audio='systemctl --user restart pipewire.service'

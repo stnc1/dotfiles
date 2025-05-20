@@ -7,15 +7,16 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter" }, {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "c",
-  callback = function()
-    vim.cmd("compiler gcc")
-  end,
+    pattern = "c",
+    callback = function()
+        vim.cmd("compiler gcc")
+        vim.opt_local.commentstring = '// %s'
+    end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "go",
-  callback = function()
-    vim.cmd("compiler go")
-  end,
+    pattern = "go",
+    callback = function()
+        vim.cmd("compiler go")
+    end,
 })
