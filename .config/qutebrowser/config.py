@@ -10,13 +10,13 @@ config.set("colors.webpage.darkmode.enabled", False)
 
 ## keybindings
 config.bind('gp', 'config-cycle --print --temp content.proxy socks://127.0.0.1:12334 none')
+config.bind('so', 'config-source')
+config.bind('<escape>', 'mode-leave', mode='passthrough')
 
 config.bind('<Ctrl-p>', 'tab-prev')
 config.bind('<Ctrl-n>', 'tab-next')
-
 config.unbind('J')
 config.unbind('K')
-
 config.bind('<Ctrl-q>', 'completion-item-focus prev', mode='command')
 config.bind('<Ctrl-q>', 'completion-item-focus prev', mode='prompt')
 
