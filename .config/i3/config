@@ -167,10 +167,8 @@ for_window [class=".*[Ff]irefox.*"] title_format "firefox"
 for_window [class=".*[Zz]en.*"] title_format "zen"
 for_window [class=".*[Cc]hromium.*"] title_format "chromium"
 for_window [class=".*[Tt]elegram.*"] title_format "telegram"
+for_window [class=".*qutebrowser.*"] title_format "qutebrowser"
 for_window [class=".*[Hh]iddify.*"] title_format "hiddify"
-for_window [class=".*[Pp]ostman.*"] title_format "postman"
-for_window [class=".*[Oo][Bb][Ss].*"] title_format "obs"
-for_window [class=".*[Oo][Bb][Ss]i.*"] title_format "obsidian"
 
 # color
 set $black      #ffffff
@@ -197,7 +195,7 @@ exec_always --no-startup-id nitrogen --restore
 # load xrandr monitor profile
 exec autorandr --change
 # keymaps
-exec --no-startup-id "setxkbmap -option 'caps:ctrl_modifier' -option 'grp:lwin_toggle' && xcape -e 'Control_L=Escape'"
+exec --no-startup-id "setxkbmap -model pc104 -layout us,ru -variant '' -option ctrl:nocaps -option 'caps:ctrl_modifier' -option 'grp:lwin_toggle' && xcape -e 'Control_L=Escape'"
 # disable sleep
 exec --no-startup-id xset s off -dpms 
 

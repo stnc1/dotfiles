@@ -1,0 +1,31 @@
+sibguti https://do.sibsutis.ru/
+vpn https://vpn.rt.ru/
+озорные_кабачки https://ihelp.rt.ru/secure/RapidBoard.jspa?rapidView=16633&selectedIssue=CNTRCFO-2279&quickFilter=50332
+liquibase http://bitbucket.rt.ru/projects/ORIS/repos/liquibase/browse
+jira http://ihelp.rt.ru/
+confluence https://confluence.rt.ru/
+citrix http://ctx.ks.rt.ru/
+repos http://bitbucket.rt.ru/
+jenkins http://jenkins.ce.rt.ru/
+helpme http://helpme.rt.ru/
+портал http://portal.it.rt.ru/
+феникс http://repository.rt.ru/
+directum http://directum-rti.rt.ru/
+local http://localho.st:9012/crm-b2b-center
+PP http://scedr07baltest01.ce.rt.ru:4201/crm-b2b-center
+PL01 http://scedr07baltest01.ce.rt.ru:4202/crm-b2b-center
+PL02 http://scedr07baltest01.ce.rt.ru:4204/crm-b2b-center/login
+PL03 https://scedr07baltest01.ce.rt.ru:4205/crm-b2b-center/login
+crm_b2b_center_backend http://jenkins.ce.rt.ru/me/my-views/view/all/job/ORIS/job/crm-b2b-center-backend/
+crm-b2b-center-web http://jenkins.ce.rt.ru/me/my-views/view/all/job/ORIS/job/crm-b2b-center-web/
+логи продлайк1 http://scedr07sla08.ce.rt.ru/kibana/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now%2Fd,to:now%2Fd))&_a=(columns:!(message,docker.container.labels.com_docker_stack_namespace),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:docker.container.labels.com_docker_stack_namespace,negate:!f,params:(query:crm-b2b-center-backend-prodlike01),type:phrase),query:(match_phrase:(docker.container.labels.com_docker_stack_namespace:crm-b2b-center-backend-prodlike01)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!(!('@timestamp',desc)))
+логи пп http://scedr07sla08.ce.rt.ru/kibana/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now%2Fd,to:now%2Fd))&_a=(columns:!(message,docker.container.labels.com_docker_stack_namespace),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:docker.container.labels.com_docker_stack_namespace,negate:!f,params:(query:crm-b2b-center-backend-predprod),type:phrase),query:(match_phrase:(docker.container.labels.com_docker_stack_namespace:crm-b2b-center-backend-predprod)))),index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!(!('@timestamp',desc)))
+crm-b2b-center-backend http://bitbucket.rt.ru/projects/ORIS/repos/crm-b2b-center-backend/browse
+pl dashboard http://scedr07sla08.ce.rt.ru/kibana/app/dashboards#/view/d196e360-954a-11ef-8196-0f88208ef393?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now%2Fw,to:now%2Fw))
+рмм https://ihelp.rt.ru/secure/RapidBoard.jspa?rapidView=15878&selectedIssue=CNTRCFO-2279
+релизы https://confluence.rt.ru/display/CNTRCRM75/2025
+приложение фронта https://confluence.rt.ru/display/CNTRCRM75/crm-b2b-center-frontend
+макеты РММ https://pixso.net/app/editor/HnGMMLug-QIYPGSY2iD_lQ?file_type=10&icon_type=1&page-id=608%3A1571
+youtube youtube.com
+mail https://cas.rt.ru
+postman https://web.postman.co/workspace/My-Workspace~fe5a71bd-cf07-4b50-8585-e7582bc0452f/overview
