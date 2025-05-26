@@ -1,7 +1,6 @@
 set $mod Mod1
 
 # Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex-autostart --autostart --environment i3
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -12,14 +11,8 @@ tiling_drag modifier titlebar
 
 # rofi
 bindsym $mod+d exec --no-startup-id zsh -c "rofi -show drun"
-#bindsym $mod+d exec dmenu_run -b
 
 ## Keybindings
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
-
-# kill focused window
-bindsym $mod+q kill
 
 # change focus
 bindsym $mod+h focus left
@@ -32,34 +25,37 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+# kill focused window
+bindsym $mod+q kill
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
 
-# changed to n because of confusing jkl; i wanted vim-style hjkl
 # split in horizontal orientation
 bindsym $mod+n split h
 # split in vertical orientation
 bindsym $mod+v split v
 
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+space floating toggle
-
 # change focus between tiling / floating windows
 bindsym $mod+Shift+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+p focus parent
 # focus the child container
 bindsym $mod+c focus child
 
+# starting apps
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+b exec qutebrowser
+bindsym $mod+m exec telegram-desktop
+
 # Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -95,45 +91,33 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# move focused workspace between monitors
+bindsym $mod+Shift+greater move workspace to output right
+bindsym $mod+Shift+less move workspace to output left
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# exit i3
+bindsym $mod+Shift+e exec "rofi -show exit -theme-str 'element.selected.normal { background-color: #2d4f67; }' -theme-str 'listview { lines: 2; }' -theme-str 'prompt,textbox-prompt-colon { enabled: false; }' -modes 'exit:~/.config/i3/i3_exit_prompt.sh' -no-fixed-num-lines"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
 ## Screenshots
-bindsym Print exec --no-startup-id maim --format=png | xclip -selection clipboard -t image/png
+bindsym Shift+Print exec --no-startup-id maim --format=png | xclip -selection clipboard -t image/png
 # print active window
 bindsym Ctrl+Print exec --no-startup-id maim --format=png --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 # print selection
-bindsym Shift+Print exec --no-startup-id maim --format=png --select | xclip -selection clipboard -t image/png
-
-## Misc
-# move focused workspace between monitors
-bindsym $mod+Shift+greater move workspace to output right
-bindsym $mod+Shift+less move workspace to output left
+bindsym Print exec --no-startup-id maim --format=png --select | xclip -selection clipboard -t image/png
 
 # lock screen
 bindsym $mod+Ctrl+l exec ~/.config/i3/i3lock.sh
@@ -145,11 +129,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
 # toggling audio device
 bindsym $mod+F2 exec ~/.config/i3/toggle_sink.sh
 # default output device
-exec pactl set-default-sink $(pactl list sinks short | awk '/Fenda/ {print $2}') | pkill -SIGRTMIN+1 i3blocks
+exec pactl set-default-sink $(pactl list sinks short | awk '/Fenda/ {print $2}')
 
 ## Appearance 
 default_border pixel 2
@@ -195,10 +178,6 @@ exec_always --no-startup-id nitrogen --restore
 # load xrandr monitor profile
 exec autorandr --change
 # keymaps
-exec --no-startup-id "setxkbmap -model pc104 -layout us,ru -variant '' -option ctrl:nocaps -option 'caps:ctrl_modifier' -option 'grp:lwin_toggle' && xcape -e 'Control_L=Escape'"
+exec --no-startup-id "setxkbmap -layout us,ru -option grp:lwin_toggle"
 # disable sleep
 exec --no-startup-id xset s off -dpms 
-
-## i3-restore
-# restoring session
-exec ~/Downloads/repos/i3-restore/i3-restore

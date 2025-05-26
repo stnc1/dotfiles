@@ -1,7 +1,6 @@
 configuration {
     show-icons: false;
     font: "DejaVu Sans Mono 14";
-    lines: 10;
     columns: 1;
     location: 0;
     width: 30;
@@ -27,14 +26,21 @@ element.alternate.normal {
 }
 
 element.selected.normal {
-    background-color: #2D4F67;
+    background-color: @background;
     text-color: #DCD7BA;
 }
 
 window {
     background-color: @background;
-    border-color: @background-alt;
-    border: 3;
+    border-color: @foreground;
+    border: 1;
+    width: 500px;
+    fixed-height: true;
+}
+
+listview {
+    lines: 1;
+    scrollbar: false;
 }
 
 inputbar {

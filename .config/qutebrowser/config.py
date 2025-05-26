@@ -15,8 +15,8 @@ config.bind('<escape>', 'mode-leave', mode='passthrough')
 
 config.bind('<Ctrl-p>', 'tab-prev')
 config.bind('<Ctrl-n>', 'tab-next')
-config.unbind('J')
-config.unbind('K')
+config.bind('<Ctrl-h>', 'tab-move -')
+config.bind('<Ctrl-l>', 'tab-move +')
 config.bind('<Ctrl-q>', 'completion-item-focus prev', mode='command')
 config.bind('<Ctrl-q>', 'completion-item-focus prev', mode='prompt')
 
